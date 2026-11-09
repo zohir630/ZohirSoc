@@ -102,7 +102,8 @@ fun AuthScreen(
                     onSignInClick = {
                         authViewModel.showSignInScreen()
                         navController.navigate("authMain")
-                    }
+                    },
+                    onSkipClick = onNavigateToMain
                 )
             }
 
@@ -111,7 +112,8 @@ fun AuthScreen(
 
                 UnifiedAuthContent(
                     state = state,
-                    authViewModel = authViewModel
+                    authViewModel = authViewModel,
+                    onSkipClick = onNavigateToMain
                 )
             }
 
@@ -178,7 +180,8 @@ fun AuthScreen(
 @Composable
 private fun UnifiedAuthContent(
     state: AuthUiState,
-    authViewModel: AuthViewModel
+    authViewModel: AuthViewModel,
+    onSkipClick: () -> Unit
 ) {
     val isSignUpMode = state is AuthUiState.SignUp
 
@@ -200,6 +203,7 @@ private fun UnifiedAuthContent(
         onToggleModeClick = authViewModel::onToggleModeClick,
         onOAuthClick = authViewModel::onOAuthClick,
         onSignInWithPasskeyClick = authViewModel::signInWithPasskey,
-        onDismissError = authViewModel::onDismissGeneralError
+        onDismissError = authViewModel::onDismissGeneralError,
+        onSkipClick = onSkipClick
     )
 }

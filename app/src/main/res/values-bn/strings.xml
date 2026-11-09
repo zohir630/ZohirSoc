@@ -5,6 +5,7 @@
     <!-- Welcome Screen Strings -->
     <string name="welcome_title">Zohirola-এ স্বাগতম</string>
     <string name="welcome_subtitle">একটি আধুনিক ও চিন্তাশীল সামাজিক মাধ্যমে যুক্ত থাকুন, শেয়ার করুন এবং নিজেকে প্রকাশ করুন।</string>
+    <string name="auth_skip">স্কিপ করুন</string>
     <string name="welcome_get_started">শুরু করুন</string>
     <string name="welcome_already_have_account">আমার একটি অ্যাকাউন্ট রয়েছে</string>
     <string name="welcome_terms_notice">চালিয়ে যাওয়ার মাধ্যমে আপনি আমাদের সেবার শর্তাবলী ও গোপনীয়তা নীতি মেনে নিচ্ছেন</string>

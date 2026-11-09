@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +33,7 @@ import com.synapse.social.studioasinc.feature.shared.theme.Spacing
 fun WelcomeScreen(
     onGetStartedClick: () -> Unit,
     onSignInClick: () -> Unit,
+    onSkipClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -106,7 +108,17 @@ fun WelcomeScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(Spacing.space24))
+            Spacer(modifier = Modifier.height(Spacing.space8))
+
+            TextButton(onClick = onSkipClick) {
+                Text(
+                    text = stringResource(id = R.string.auth_skip),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            Spacer(modifier = Modifier.height(Spacing.space16))
 
             Text(
                 text = stringResource(id = R.string.welcome_terms_notice),

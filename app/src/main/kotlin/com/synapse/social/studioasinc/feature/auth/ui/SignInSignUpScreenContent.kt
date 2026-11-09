@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -61,7 +62,8 @@ fun SignInSignUpScreenContent(
     onToggleModeClick: () -> Unit,
     onOAuthClick: (String) -> Unit,
     onSignInWithPasskeyClick: () -> Unit,
-    onDismissError: () -> Unit
+    onDismissError: () -> Unit,
+    onSkipClick: () -> Unit = {}
 ) {
     AuthScreenLayout(
         header = {
@@ -96,7 +98,8 @@ fun SignInSignUpScreenContent(
                 onToggleModeClick = onToggleModeClick,
                 onOAuthClick = onOAuthClick,
                 onSignInWithPasskeyClick = onSignInWithPasskeyClick,
-                onDismissError = onDismissError
+                onDismissError = onDismissError,
+                onSkipClick = onSkipClick
             )
         }
     )
@@ -132,7 +135,8 @@ private fun UnifiedAuthForm(
     onToggleModeClick: () -> Unit,
     onOAuthClick: (String) -> Unit,
     onSignInWithPasskeyClick: () -> Unit,
-    onDismissError: () -> Unit
+    onDismissError: () -> Unit,
+    onSkipClick: () -> Unit = {}
 ) {
     val focusManager = LocalFocusManager.current
     val haptic = LocalHapticFeedback.current
@@ -283,6 +287,16 @@ private fun UnifiedAuthForm(
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.clickable { onToggleModeClick() }
+        )
+    }
+
+    Spacer(modifier = Modifier.height(Spacing.space8))
+
+    TextButton(onClick = onSkipClick) {
+        Text(
+            text = stringResource(R.string.auth_skip),
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
     }
 }
