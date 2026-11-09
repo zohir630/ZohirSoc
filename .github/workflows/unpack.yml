@@ -1,0 +1,27 @@
+name: Unpack project
+
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Zip খুলে রিপোর রুটে বসাও
+        run: |
+          unzip -q zohirolaApp-main.zip -x 'synapseApp-main/.github/*'
+          cp -a synapseApp-main/. .
+          rm -rf synapseApp-main
+          git rm -q zohirolaApp-main.zip
+
+      - name: Commit ও Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Unpack project files"
+          git push
